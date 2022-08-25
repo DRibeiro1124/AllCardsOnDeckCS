@@ -13,12 +13,13 @@ namespace AllCardsOnDeckCS
 
             var suits = new List<string>()
            {
-            "Spades", "Hearts", "Diamonds", "Clubs"
+            "♠️", "💚", "♦️", "♣️"
+
            };
 
             var cardRanking = new List<string>()
             {
-             "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"
+             "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
             };
 
             var deck = new List<string>();
@@ -59,22 +60,21 @@ namespace AllCardsOnDeckCS
             //two "dealt" cards in a variable named playerHand. 
             //Consider what type of variable playerHand will have to be.
 
-            var playerFirstCard = deck[0];
-            var playerSecondCard = deck[1];
-            var cpuFirstCard = deck[2];
-            var cpuSecondCard = deck[3];
+            var playerHand = deck[0] + "  and " + deck[1];
+            var computerHand = deck[2] + "  and " + deck[3];
+
 
             //Implement a way to two deal cards each into two different hands.
-            Console.WriteLine($"Player has been dealt {playerFirstCard} and {playerSecondCard}");
-            Console.WriteLine($"The Computer has been dealt {cpuFirstCard} and {cpuSecondCard}");
+            Console.WriteLine($"Player has been dealt {playerHand}");
+            Console.WriteLine($"The Computer has been dealt {computerHand}");
 
             //EPIC MODE
             //Implement the game of WAR
+
         }
 
     }
 }
-
 
 
 
