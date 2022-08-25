@@ -10,109 +10,71 @@ namespace AllCardsOnDeckCS
         {
             //EXPLORER MODE
             //Once the program starts, you should create a new deck of cards.
-            //Creating a new deck. Check with Greg later about how to go about this. 
 
-            var deck = new Queue<string>();
-            deck.Enqueue("2 of Spades");
-            deck.Enqueue("3 of Spades");
-            deck.Enqueue("4 of Spades");
-            deck.Enqueue("5 of Spades");
-            deck.Enqueue("6 of Spades");
-            deck.Enqueue("7 of Spades");
-            deck.Enqueue("8 of Spades");
-            deck.Enqueue("9 of Spades");
-            deck.Enqueue("10 of Spades");
-            deck.Enqueue("Jack of Spades");
-            deck.Enqueue("Queen of Spades");
-            deck.Enqueue("King of Spades");
-            deck.Enqueue("Ace of Spades");
-            deck.Enqueue("2 of Hearts");
-            deck.Enqueue("3 of Hearts");
-            deck.Enqueue("4 of Hearts");
-            deck.Enqueue("5 of Hearts");
-            deck.Enqueue("6 of Hearts");
-            deck.Enqueue("7 of Hearts");
-            deck.Enqueue("8 of Hearts");
-            deck.Enqueue("9 of Hearts");
-            deck.Enqueue("10 of Hearts");
-            deck.Enqueue("Jack of Hearts");
-            deck.Enqueue("Queen of Hearts");
-            deck.Enqueue("King of Hearts");
-            deck.Enqueue("Ace of Hearts");
-            deck.Enqueue("2 of Diamonds");
-            deck.Enqueue("3 of Diamonds");
-            deck.Enqueue("4 of Diamonds");
-            deck.Enqueue("5 of Diamonds");
-            deck.Enqueue("6 of Diamonds");
-            deck.Enqueue("7 of Diamonds");
-            deck.Enqueue("8 of Diamonds");
-            deck.Enqueue("9 of Diamonds");
-            deck.Enqueue("10 of Diamonds");
-            deck.Enqueue("Jack of Diamonds");
-            deck.Enqueue("Queen of Diamonds");
-            deck.Enqueue("King of Diamonds");
-            deck.Enqueue("Ace of Diamonds");
-            deck.Enqueue("2 of Clubs");
-            deck.Enqueue("3 of Clubs");
-            deck.Enqueue("4 of Clubs");
-            deck.Enqueue("5 of Clubs");
-            deck.Enqueue("6 of Clubs");
-            deck.Enqueue("7 of Clubs");
-            deck.Enqueue("8 of Clubs");
-            deck.Enqueue("9 of Clubs");
-            deck.Enqueue("10 of Clubs");
-            deck.Enqueue("Jack of Clubs");
-            deck.Enqueue("Queen of Clubs");
-            deck.Enqueue("King of Clubs");
-            deck.Enqueue("Ace of Clubs");
+            var suits = new List<string>()
+           {
+            "Spades", "Hearts", "Diamonds", "Clubs"
+           };
 
-
-            //After deck creation, you should shuffle the deck.
-            //Ask Greg about this foreach here, little confusing
-            var random = new Random();
-            var shuffledCards = deck.OrderBy(cards => random.Next());
-            foreach (var card in shuffledCards)
+            var cardRanking = new List<string>()
             {
-                Console.WriteLine($"{card}");
+             "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"
+            };
 
+            var deck = new List<string>();
+
+
+            foreach (var suit in suits)
+            {
+                foreach (var rank in cardRanking)
+                {
+                    var card = $"{rank} of {suit}";
+                    deck.Add(card);
+                }
             }
 
 
+            //After deck creation, you should shuffle the deck.
 
+            var random = new Random();
+            for (var i = deck.Count - 1; i > 0; i--)
+            {
+                var n = random.Next(i + 1);
+                var temp = deck[i];
+                deck[i] = deck[n];
+                deck[n] = temp;
+            };
 
-
-
+            //Try and see the whole deck shuffled
+            //I'm not 100% sure how this works but it fixed my error. Check with Greg
+            Console.WriteLine($"{string.Join(System.Environment.NewLine, deck)}");
 
 
             //After deck is shuffled, display top two cards.
 
+            Console.WriteLine($"The first two cards from the deck are {deck[0]} and {deck[1]}");
 
+            // ADVENTURE MODE
+            //In addition to displaying the top two cards, also store these
+            //two "dealt" cards in a variable named playerHand. 
+            //Consider what type of variable playerHand will have to be.
 
+            var playerFirstCard = deck[0];
+            var playerSecondCard = deck[1];
+            var cpuFirstCard = deck[2];
+            var cpuSecondCard = deck[3];
 
-            //ADVENTURE MODE
-            //In  to displaying the top two cards, also store these 
-            //two 'dealt' cards in a variable named playerHand. Consider the type of 
-            //variable the playerHand will be.
-            //Implement a way to deal cards to two different hands.
+            //Implement a way to two deal cards each into two different hands.
+            Console.WriteLine($"Player has been dealt {playerFirstCard} and {playerSecondCard}");
+            Console.WriteLine($"The Computer has been dealt {cpuFirstCard} and {cpuSecondCard}");
 
             //EPIC MODE
             //Implement the game of WAR
         }
+
     }
 }
 
-/* Gavin's psudo code help guide
-numberOfCards = length of our deck
-for rightIndex from numberOfCards - 1 down to 1 do:
-leftIndex = random integer that is >= to 0 and LESS than rightIndex. 
-see the section "How do we get a random integer"
 
-Now swap values at rightIndex and leftIndex by doing this:
-leftCard = the value from the deck (leftIndex)
-rightCard = the value from the deck (right index)
-deck[rightIndex] = leftCard
-deck[leftIndex] = rightCard
-
-*/
 
 
