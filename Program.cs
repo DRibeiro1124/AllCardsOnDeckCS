@@ -45,15 +45,14 @@ namespace AllCardsOnDeckCS
                 deck[i] = deck[n];
                 deck[n] = tempi;
             };
-            Console.WriteLine($"{string.Join(System.Environment.NewLine, deck)}");
 
             //Try and see the whole deck shuffled
-            //I'm not 100% sure how this works but it fixed my error. Check with Greg
+            // Console.WriteLine($"{string.Join(System.Environment.NewLine, deck)}");
 
 
             //After deck is shuffled, display top two cards.
 
-            Console.WriteLine($"The first two cards from the deck are {deck[0]}  and  {deck[1]}");
+            //Console.WriteLine($"The first two cards from the deck are {deck[0]}  and  {deck[1]}");
 
             // ADVENTURE MODE
             //In addition to displaying the top two cards, also store these
@@ -65,8 +64,8 @@ namespace AllCardsOnDeckCS
 
 
             //Implement a way to two deal cards each into two different hands.
-            Console.WriteLine($"Player has been dealt {playerHand}");
-            Console.WriteLine($"The Computer has been dealt {computerHand}");
+            //Console.WriteLine($"Player has been dealt {playerHand}");
+            //Console.WriteLine($"The Computer has been dealt {computerHand}");
             //This will have to be refactored because it's only taking the top
             //two cards from the deck but it doesn't removed them out of the deck.
             //Console.WriteLine($"There are now {deck.Count} cards in the deck");
@@ -74,6 +73,22 @@ namespace AllCardsOnDeckCS
 
             //EPIC MODE
             //Implement the game of WAR
+            var shuffleCards = new Queue<string>(deck);
+            var dealCards = new List<string>();
+
+            var playerOneDeck = shuffleCards.Where((x, i) => i % 2 == 0).ToArray();
+            var playerTwoDeck = shuffleCards.Where((x, i) => i % 2 != 0).ToArray();
+
+            //Console.WriteLine(shuffleCards.Count());
+            //Console.WriteLine($"{string.Join(System.Environment.NewLine, shuffleCards)}");
+            Console.WriteLine($"{string.Join(System.Environment.NewLine, playerOneDeck)}");
+            //Console.WriteLine($"{string.Join(System.Environment.NewLine, playerTwoDeck)}");
+
+            //Both Players should each have 26 cards. Now the game starts
+
+
+
+
 
         }
 
