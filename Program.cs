@@ -4,96 +4,95 @@ using System.Linq;
 
 namespace AllCardsOnDeckCS
 {
+    class Card
+    {
+        public string suit;
+        public string face;
+        // public int point;
+    }
     class Program
     {
         static void Main(string[] args)
         {
             //EXPLORER MODE
             //Once the program starts, you should create a new deck of cards.
-            //Trying to create a dictionary to add value to each card in my deck
-            var cardPoints = new Dictionary<int, string>()
+            var faceValue = new List<string>()
             {
-                {2, "2"}, {3, "3"}, {4, "4"}, {5, "5"}, {6, "6"}, {7,"7"}, {8, "8"},
-                 {9, "9"}, {10, "10"}, {11, "J"}, {12, "Q"}, {13, "K"}, {14, "A"}
+                "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
             };
 
             var suits = new List<string>()
            {
-            "♠️", "💚", "♦️", "♣️"
-
+                "♠️", "💚", "♦️", "♣️"
            };
 
-            var deck = new List<string>();
+            var deck = new List<Card>();
 
-            var shuffle = new List<string>();
-            foreach (KeyValuePair<int, string> cardValue in cardPoints)
+            foreach (var rankings in faceValue)
             {
                 foreach (var suit in suits)
                 {
-                    var card = $"{cardValue.Value} {suit}";
-                    deck.Add(card);
+
+                    // if face != J K Q A 
+                    // parse the number string 
+                    // else if it == J K Q A 
+                    // if J 
+                    // point = 11
+                    // else if Q
+                    // point = 12 
+                    // and so on
+                    Card singleCard = new Card { suit = suit, face = rankings };
+                    deck.Add(singleCard);
                 }
             }
-
             //After deck creation, you should shuffle the deck.
 
             var random = new Random();
             for (var i = deck.Count - 1; i > 0; i--)
             {
                 var n = random.Next(i + 1);
-                var tempi = deck[i];
+                var temp = deck[i];
                 deck[i] = deck[n];
-                deck[n] = tempi;
+                deck[n] = temp;
             };
 
-            //Try and see the whole deck shuffled
-            // Console.WriteLine($"{string.Join(System.Environment.NewLine, deck)}");
-
+            foreach (var item in deck)
+            {
+                //display the whole shuffled deck
+                Console.WriteLine(item.face + " " + item.suit);
+            }
 
             //After deck is shuffled, display top two cards.
-
-            //Console.WriteLine($"The first two cards from the deck are {deck[0]}  and  {deck[1]}");
+            var topOfDeck = deck[0].face + deck[0].suit + " " + " and " + deck[1].face + deck[1].suit;
+            Console.WriteLine($"The top two cards from the deck are {topOfDeck}");
 
             // ADVENTURE MODE
             //In addition to displaying the top two cards, also store these
             //two "dealt" cards in a variable named playerHand. 
             //Consider what type of variable playerHand will have to be.
 
-            var playerHand = deck[0] + "  and " + deck[1];
-            var computerHand = deck[2] + "  and " + deck[3];
 
 
             //Implement a way to two deal cards each into two different hands.
-            //Console.WriteLine($"Player has been dealt {playerHand}");
-            //Console.WriteLine($"The Computer has been dealt {computerHand}");
-            //This will have to be refactored because it's only taking the top
-            //two cards from the deck but it doesn't removed them out of the deck.
-            //Console.WriteLine($"There are now {deck.Count} cards in the deck");
+            // var firstDealtCard = deck[0].face + deck[0].suit + deck.face[1] + deck.suit[1];
 
 
             //EPIC MODE
             //Implement the game of WAR
-            var shuffleCards = new Queue<string>(deck);
-            var dealCards = new List<string>();
+            var playerOneDeck = deck.Where((x, i) => i % 2 == 0);
+            var playerTwoDeck = deck.Where((x, i) => i % 2 != 0);
 
-            var playerOneDeck = shuffleCards.Where((x, i) => i % 2 == 0).ToArray();
-            var playerTwoDeck = shuffleCards.Where((x, i) => i % 2 != 0).ToArray();
+            //Console.WriteLine($"Player One has these cards {string.Join(System.Environment.NewLine, playerOneDeck)}");
+            //Console.WriteLine($"Player Two has these cards {string.Join(System.Environment.NewLine, playerTwoDeck)}");
 
-            //Console.WriteLine(shuffleCards.Count());
-            //Console.WriteLine($"{string.Join(System.Environment.NewLine, shuffleCards)}");
-            Console.WriteLine($"{string.Join(System.Environment.NewLine, playerOneDeck)}");
-            //Console.WriteLine($"{string.Join(System.Environment.NewLine, playerTwoDeck)}");
-
-            //Both Players should each have 26 cards. Now the game starts
-
-
-
-
+            //Both Players should each have 26 cards. Now the game start
 
         }
+        //create a new function outside of main to deal the cards out.
+        //Passing in deck of cards and then passing in an empty array for user cards dealt.
+        //Then return two list A- remainder of the deck B-the cards dealt
 
     }
+
 }
-
-
 
