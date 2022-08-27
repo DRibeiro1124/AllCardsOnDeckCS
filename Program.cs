@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 
 namespace AllCardsOnDeckCS
 {
@@ -32,6 +33,7 @@ namespace AllCardsOnDeckCS
                 foreach (var suit in suits)
                 {
                     var cardValue = 0;
+
 
                     if (rankings == "J")
                     {
@@ -75,19 +77,19 @@ namespace AllCardsOnDeckCS
             }
 
             //After deck is shuffled, display top two cards.
+            var twoCardsRemoval = new List<Card>();
+            TopTwoCard(deck, twoCardsRemoval);
 
+            Console.WriteLine("The first card from the deck is " + String.Join(" ", twoCardsRemoval[0].face, twoCardsRemoval[0].suit));
+            Console.WriteLine("The second card from the deck is " + String.Join(" ", twoCardsRemoval[1].face, twoCardsRemoval[1].suit));
 
             // ADVENTURE MODE
             //In addition to displaying the top two cards, also store these
             //two "dealt" cards in a variable named playerHand. 
             //Consider what type of variable playerHand will have to be.
-            var playerHand = new List<Card>();
-
-
 
 
             //Implement a way to two deal cards each into two different hands.
-            // var firstDealtCard = deck[0].face + deck[0].suit + deck.face[1] + deck.suit[1];
 
 
             //EPIC MODE
@@ -99,16 +101,30 @@ namespace AllCardsOnDeckCS
             //Console.WriteLine($"Player Two has these cards {string.Join(System.Environment.NewLine, playerTwoDeck)}");
 
             //Both Players should each have 26 cards. Now the game start
-            // DealCards();
-            // Foo(deck, playerHand);
 
         }
         //create a new function outside of main to deal the cards out.
+        static (List<Card>, List<Card>) TopTwoCard(List<Card> playerDeck, List<Card> emptyDeck)
+        {
+
+            // Console.WriteLine($"DECK {playerDeck.Count}");
+            // Console.WriteLine($"EMPTY {emptyDeck.Count}");
+            emptyDeck.Add(playerDeck[0]);
+            playerDeck.RemoveAt(0);
+            // Console.WriteLine($"DECK {playerDeck.Count}");
+            // Console.WriteLine($"EMPTY{emptyDeck.Count}");
+
+            // Console.WriteLine($"DECK {playerDeck.Count}");
+            // Console.WriteLine($"EMPTY {emptyDeck.Count}");
+            emptyDeck.Add(playerDeck[0]);
+            playerDeck.RemoveAt(0);
+            // Console.WriteLine($"DECK {playerDeck.Count}");
+            // Console.WriteLine($"EMPTY{emptyDeck.Count}");
+
+            return (playerDeck, emptyDeck);
 
 
-        //Passing in deck of cards and then passing in an empty array for user cards dealt.
-        //Then return two list A- remainder of the deck B-the cards dealt
-
+        }
     }
 }
 
