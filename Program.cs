@@ -23,7 +23,7 @@ namespace AllCardsOnDeckCS
 
             var suits = new List<string>()
            {
-                "♠️", "💚", "♦️", "♣️"
+                "♠️", "♥️", "♦️", "♣️"
            };
 
             var deck = new List<Card>();
@@ -73,57 +73,25 @@ namespace AllCardsOnDeckCS
             foreach (var item in deck)
             {
                 //display the whole shuffled deck
-                Console.WriteLine(item.face + " " + item.suit + " " + " and their value is " + item.point);
+                Console.WriteLine(item.face + " " + item.suit + " " + " and it's value is " + item.point);
             }
 
             //After deck is shuffled, display top two cards.
             var twoCardsRemoval = new List<Card>();
-            TopTwoCard(deck, twoCardsRemoval);
+            TopTwoCards(deck, twoCardsRemoval);
 
             Console.WriteLine("The first card from the deck is " + String.Join(" ", twoCardsRemoval[0].face, twoCardsRemoval[0].suit));
             Console.WriteLine("The second card from the deck is " + String.Join(" ", twoCardsRemoval[1].face, twoCardsRemoval[1].suit));
-
-            // ADVENTURE MODE
-            //In addition to displaying the top two cards, also store these
-            //two "dealt" cards in a variable named playerHand. 
-            //Consider what type of variable playerHand will have to be.
-
-
-            //Implement a way to two deal cards each into two different hands.
-
-
-            //EPIC MODE
-            //Implement the game of WAR
-            // var playerOneDeck = deck.Where((x, i) => i % 2 == 0);
-            // var playerTwoDeck = deck.Where((x, i) => i % 2 != 0);
-
-            //Console.WriteLine($"Player One has these cards {string.Join(System.Environment.NewLine, playerOneDeck)}");
-            //Console.WriteLine($"Player Two has these cards {string.Join(System.Environment.NewLine, playerTwoDeck)}");
-
-            //Both Players should each have 26 cards. Now the game start
-
         }
-        //create a new function outside of main to deal the cards out.
-        static (List<Card>, List<Card>) TopTwoCard(List<Card> playerDeck, List<Card> emptyDeck)
+
+        static (List<Card>, List<Card>) TopTwoCards(List<Card> playerDeck, List<Card> emptyDeck)
         {
-
-            // Console.WriteLine($"DECK {playerDeck.Count}");
-            // Console.WriteLine($"EMPTY {emptyDeck.Count}");
             emptyDeck.Add(playerDeck[0]);
             playerDeck.RemoveAt(0);
-            // Console.WriteLine($"DECK {playerDeck.Count}");
-            // Console.WriteLine($"EMPTY{emptyDeck.Count}");
 
-            // Console.WriteLine($"DECK {playerDeck.Count}");
-            // Console.WriteLine($"EMPTY {emptyDeck.Count}");
             emptyDeck.Add(playerDeck[0]);
             playerDeck.RemoveAt(0);
-            // Console.WriteLine($"DECK {playerDeck.Count}");
-            // Console.WriteLine($"EMPTY{emptyDeck.Count}");
-
             return (playerDeck, emptyDeck);
-
-
         }
     }
 }
