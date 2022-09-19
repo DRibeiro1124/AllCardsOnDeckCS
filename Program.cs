@@ -73,16 +73,19 @@ namespace AllCardsOnDeckCS
             foreach (var item in deck)
             {
                 //display the whole shuffled deck
-                Console.WriteLine(item.face + " " + item.suit + " " + " and it's value is " + item.point);
+                Console.WriteLine(item.face + " " + item.suit + " " + " and it has the value of " + item.point);
             }
 
             //After deck is shuffled, display top two cards.
             var twoCardsRemoval = new List<Card>();
+            Console.WriteLine($"The deck started with " + deck.Count() + " cards");
             TopTwoCards(deck, twoCardsRemoval);
-
             Console.WriteLine("The first card from the deck is " + String.Join(" ", twoCardsRemoval[0].face, twoCardsRemoval[0].suit));
             Console.WriteLine("The second card from the deck is " + String.Join(" ", twoCardsRemoval[1].face, twoCardsRemoval[1].suit));
+            Console.WriteLine($"The deck now has " + deck.Count() + " cards");
+
         }
+
 
         static (List<Card>, List<Card>) TopTwoCards(List<Card> playerDeck, List<Card> emptyDeck)
         {
@@ -91,9 +94,18 @@ namespace AllCardsOnDeckCS
 
             emptyDeck.Add(playerDeck[0]);
             playerDeck.RemoveAt(0);
+
             return (playerDeck, emptyDeck);
         }
     }
 }
 
 
+/*
+public void Deal()
+    {
+        List<MatchCard> player1 = deck.Where((x, n) => n % 2 == 0).ToList();
+        List<MatchCard> player2 = deck.Where((x, n) => n % 1 == 0).ToList();
+    }
+
+    */
